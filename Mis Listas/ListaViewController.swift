@@ -129,16 +129,20 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func crearItem(sender:UIButton!){ //Se crea una nueva lista
         
-        let alertaNuevaLista: UIAlertController = UIAlertController(title: "Nuevo Item", message: nil, preferredStyle: .Alert)
-        alertaNuevaLista.view.tintColor = Configuracion.verdeOscuro
+        let titulo:NSAttributedString! = NSAttributedString(string: "Nuevo elemento", attributes: [NSForegroundColorAttributeName : Configuracion.verdeOscuro,
+            NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
+    
+        let alertaNuevoItem: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
+        alertaNuevoItem.view.tintColor = Configuracion.verdeOscuro
+        alertaNuevoItem.setValue(titulo, forKey: "attributedTitle")
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Cancel) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Default) { action -> Void in
             
         }
         
-        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Default) { action -> Void in
+        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Cancel) { action -> Void in
             
-            let textField:UITextField = alertaNuevaLista.textFields![0] as UITextField;
+            let textField:UITextField = alertaNuevoItem.textFields![0] as UITextField;
             
             if(textField.text?.characters.count > 0){
                 
@@ -155,15 +159,15 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        alertaNuevaLista.addAction(cancelAction)
-        alertaNuevaLista.addAction(addAction)
-        alertaNuevaLista.addTextFieldWithConfigurationHandler { textField -> Void in
+        alertaNuevoItem.addAction(cancelAction)
+        alertaNuevoItem.addAction(addAction)
+        alertaNuevoItem.addTextFieldWithConfigurationHandler { textField -> Void in
             
             textField.textColor = Configuracion.verdeOscuro
             textField.placeholder = "Nombre"
         }
         
-        self.presentViewController(alertaNuevaLista, animated: true, completion: nil)
+        self.presentViewController(alertaNuevoItem, animated: true, completion: nil)
     }
 
     

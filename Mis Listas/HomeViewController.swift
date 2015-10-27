@@ -90,14 +90,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func crearNuevaLista(sender:UIButton!){ //Se crea una nueva lista
 
-        let alertaNuevaLista: UIAlertController = UIAlertController(title: "Nueva lista", message: nil, preferredStyle: .Alert)
+        let titulo:NSAttributedString! = NSAttributedString(string: "Nueva lista", attributes: [NSForegroundColorAttributeName : Configuracion.verdeOscuro,
+            NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
+        
+        let alertaNuevaLista: UIAlertController = UIAlertController(title:nil, message: nil, preferredStyle: .Alert)
         alertaNuevaLista.view.tintColor = Configuracion.verdeOscuro
+        alertaNuevaLista.setValue(titulo, forKey: "attributedTitle")
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Cancel) { action -> Void in
-            
-        }
-        
-        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Default) { action -> Void in
+        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Cancel) { action -> Void in
             
             let textField:UITextField = alertaNuevaLista.textFields![0] as UITextField;
             
@@ -114,11 +114,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 self.cargarListas()
             }
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Default) { action -> Void in
             
         }
         
-        alertaNuevaLista.addAction(cancelAction)
         alertaNuevaLista.addAction(addAction)
+        alertaNuevaLista.addAction(cancelAction)
         alertaNuevaLista.addTextFieldWithConfigurationHandler { textField -> Void in
             
             textField.textColor = Configuracion.verdeOscuro
