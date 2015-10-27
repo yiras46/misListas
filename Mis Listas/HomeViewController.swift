@@ -70,11 +70,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return celda
     }
     
+    
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         
         indiceSeleccionado = indexPath.row
         return indexPath
     }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -90,11 +92,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func crearNuevaLista(sender:UIButton!){ //Se crea una nueva lista
 
-        let titulo:NSAttributedString! = NSAttributedString(string: "Nueva lista", attributes: [NSForegroundColorAttributeName : Configuracion.verdeOscuro,
+        let titulo:NSAttributedString! = NSAttributedString(string: "Nueva lista", attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
         
         let alertaNuevaLista: UIAlertController = UIAlertController(title:nil, message: nil, preferredStyle: .Alert)
-        alertaNuevaLista.view.tintColor = Configuracion.verdeOscuro
+        alertaNuevaLista.view.tintColor = UIColor.verdeOscuro()
         alertaNuevaLista.setValue(titulo, forKey: "attributedTitle")
         
         let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Cancel) { action -> Void in
@@ -124,18 +126,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         alertaNuevaLista.addAction(cancelAction)
         alertaNuevaLista.addTextFieldWithConfigurationHandler { textField -> Void in
             
-            textField.textColor = Configuracion.verdeOscuro
+            textField.textColor = UIColor.verdeOscuro()
             textField.placeholder = "Nombre"
         }
         
         self.presentViewController(alertaNuevaLista, animated: true, completion: nil)
     }
     
+    
     func cargarListas(){ //Se cargan las listas del usuario
         
         listasUsuario = Lista.objectsInRealm(realm, withPredicate: NSPredicate(format: "usuario = %@", Configuracion.UUID))
         listaTabla.reloadData()
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

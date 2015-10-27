@@ -19,6 +19,8 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let realm = RLMRealm.defaultRealm()
     var lista:Lista!
     
+    
+    
     /*
         MARK: UIViewControllerDelegate
     */
@@ -38,9 +40,11 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         marcadosTabla.dataSource = self;
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,6 +60,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01;
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -93,10 +98,12 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         
         return indexPath
     }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -114,6 +121,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         marcarItem(marcar, posicion: indexPath.row)
     }
     
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
@@ -129,11 +137,11 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func crearItem(sender:UIButton!){ //Se crea una nueva lista
         
-        let titulo:NSAttributedString! = NSAttributedString(string: "Nuevo elemento", attributes: [NSForegroundColorAttributeName : Configuracion.verdeOscuro,
+        let titulo:NSAttributedString! = NSAttributedString(string: "Nuevo elemento", attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
     
         let alertaNuevoItem: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
-        alertaNuevoItem.view.tintColor = Configuracion.verdeOscuro
+        alertaNuevoItem.view.tintColor = UIColor.verdeOscuro()
         alertaNuevoItem.setValue(titulo, forKey: "attributedTitle")
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Default) { action -> Void in
@@ -163,7 +171,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         alertaNuevoItem.addAction(addAction)
         alertaNuevoItem.addTextFieldWithConfigurationHandler { textField -> Void in
             
-            textField.textColor = Configuracion.verdeOscuro
+            textField.textColor = UIColor.verdeOscuro()
             textField.placeholder = "Nombre"
         }
         

@@ -13,8 +13,5 @@ import UIKit
 
 class Configuracion: NSObject {
     
-    //MARK: colores
-    
-    static var verdeOscuro = UIColor(netHex:0x779e79) //verde oscuro
     static var UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
 }
