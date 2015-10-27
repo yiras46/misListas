@@ -50,6 +50,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         MARK: UITableViewDelegate & UITableViewDataSource
     */
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01;
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return Int(listasUsuario.count)

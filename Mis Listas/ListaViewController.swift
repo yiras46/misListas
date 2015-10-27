@@ -53,6 +53,10 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         MARK: UITableViewDelegate & UITableViewDataSource
     */
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01;
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(tableView == marcadosTabla){
