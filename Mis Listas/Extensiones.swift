@@ -24,3 +24,15 @@ extension UIColor {
     }
 }
 
+
+extension String{
+    
+    func tachar() ->NSAttributedString{
+    
+        let strokeString = NSMutableAttributedString(string: self, attributes: [NSFontAttributeName:UIFont.italicSystemFontOfSize(16.0)])
+        strokeString.addAttribute(NSStrokeColorAttributeName, value: UIColor.blackColor(), range:  NSRange(location: 0, length: self.characters.count))
+        strokeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSRange(location: 0, length: self.characters.count))
+        
+        return strokeString
+    }
+}

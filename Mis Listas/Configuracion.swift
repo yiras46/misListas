@@ -13,12 +13,8 @@ import UIKit
 
 class Configuracion: NSObject {
     
-//MARK: colores
+    //MARK: colores
     
     static var verdeOscuro = UIColor(netHex:0x779e79) //verde oscuro
-    
     static var UUID = UIDevice.currentDevice().identifierForVendor!.UUIDString
-    
-    static var objetosLista = ["Objeto 1", "Objeto 2", "Objeto 3", "Objeto 4"]
-    static var objetosMarcados = ["Marcado 1", "Marcado 2", "Marcado 3", "Marcado 4", "Marcado 5"]
 }

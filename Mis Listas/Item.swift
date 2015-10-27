@@ -12,7 +12,6 @@ import Realm
 class Item: RLMObject {
 
     dynamic var titulo:String = ""
-    dynamic var checked:Bool = false
     dynamic var category:String = ""
     dynamic var foto:NSData = NSData()
 }

@@ -13,6 +13,7 @@ class Lista: RLMObject {
     
     dynamic var nombre = ""
     dynamic var usuario = ""
-    //dynamic var items:[Item] = [Item]()
+
     dynamic var items:RLMArray = RLMArray(objectClassName: "Item")
+    dynamic var checked_items:RLMArray = RLMArray (objectClassName: "Item")
 }

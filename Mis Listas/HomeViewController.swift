@@ -86,6 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func crearNuevaLista(sender:UIButton!){ //Se crea una nueva lista
 
         let alertaNuevaLista: UIAlertController = UIAlertController(title: "Nueva lista", message: nil, preferredStyle: .Alert)
+        alertaNuevaLista.view.tintColor = Configuracion.verdeOscuro
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Cancel) { action -> Void in
             
@@ -95,16 +96,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let textField:UITextField = alertaNuevaLista.textFields![0] as UITextField;
             
-            self.realm.beginWriteTransaction()
+            if(textField.text?.characters.count > 0){
             
-            let listaNueva:Lista = Lista()
-            listaNueva.nombre = textField.text!
-            listaNueva.usuario = Configuracion.UUID
-            Lista.createInDefaultRealmWithValue(listaNueva)
+                self.realm.beginWriteTransaction()
+                
+                let listaNueva:Lista = Lista()
+                listaNueva.nombre = textField.text!
+                listaNueva.usuario = Configuracion.UUID
+                Lista.createInDefaultRealmWithValue(listaNueva)
+                
+                self.realm.commitWriteTransaction()
+                
+                self.cargarListas()
+            }
             
-            self.realm.commitWriteTransaction()
-            
-            self.cargarListas()
         }
         
         alertaNuevaLista.addAction(cancelAction)
@@ -129,9 +134,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(segue.identifier == "toDetalleLista"){
             
             let listaViewController = segue.destinationViewController as! ListaViewController
-            let celdaSeleccionada = listaTabla .cellForRowAtIndexPath(NSIndexPath(forRow: indiceSeleccionado, inSection: 0)) as! ListaHomeTableViewCell
-            
-            listaViewController.tituloLista = celdaSeleccionada.titulo.text
+            listaViewController.lista = listasUsuario.objectAtIndex(UInt(indiceSeleccionado)) as! Lista;
         }
     }
 

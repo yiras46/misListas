@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import Realm
 
 class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var barraNavegacion:UINavigationItem!
+    @IBOutlet weak var nuevoItemBoton:UIBarButtonItem!
     @IBOutlet var listaTabla:UITableView!
     @IBOutlet var marcadosTabla:UITableView!
     
-    var tituloLista:String!
-
-    
+    let realm = RLMRealm.defaultRealm()
+    var lista:Lista!
     
     /*
         MARK: UIViewControllerDelegate
@@ -25,7 +26,10 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        barraNavegacion.title = tituloLista
+        barraNavegacion.title = lista.nombre
+        
+        nuevoItemBoton.target = self;
+        nuevoItemBoton.action = "crearNuevoItem:";
         
         listaTabla.delegate = self;
         listaTabla.dataSource = self;
@@ -40,7 +44,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        barraNavegacion.title = tituloLista
+        barraNavegacion.title = lista.nombre
     }
     
     
@@ -53,11 +57,11 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if(tableView == marcadosTabla){
             
-            return Configuracion.objetosMarcados.count
+            return Int(lista.checked_items.count)
             
         }else if(tableView == listaTabla){
         
-            return Configuracion.objetosLista.count
+            return Int(lista.items.count)
             
         }else{
             
@@ -72,14 +76,15 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
             let celda:ListaTableViewCell = tableView.dequeueReusableCellWithIdentifier("ListaCell", forIndexPath: indexPath) as! ListaTableViewCell
         
-            celda.titulo.text = Configuracion.objetosLista[indexPath.row]
+            celda.titulo.text = (lista.items.objectAtIndex(UInt(indexPath.row)) as! Item).titulo
             return celda
         
         }else{
             
             let celda:MarcadosTableViewCell = tableView.dequeueReusableCellWithIdentifier("CheckedCell", forIndexPath: indexPath) as! MarcadosTableViewCell
             
-            celda.titulo.text = Configuracion.objetosMarcados[indexPath.row]
+            let titulo:String = (lista.checked_items.objectAtIndex(UInt(indexPath.row)) as! Item).titulo
+            celda.titulo.attributedText = titulo.tachar()
             return celda
         }
     }
@@ -91,8 +96,89 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let celdaSeleccionada = tableView .cellForRowAtIndexPath(indexPath) //as! ListaTableViewCell
+        let celdaSeleccionada = tableView .cellForRowAtIndexPath(indexPath)
         celdaSeleccionada!.setSelected(false, animated: true)
+        
+        var marcar:Bool!
+        
+        if(tableView == listaTabla){
+            marcar = true;
+        }else{
+            marcar = false;
+        }
+        
+        marcarItem(marcar, posicion: indexPath.row)
+    }
+    
+    
+    
+    /*
+    MARK: targets y eventos
+    */
+    
+    func crearNuevoItem(sender:UIButton!){ //Se crea una nueva lista
+        
+        let alertaNuevaLista: UIAlertController = UIAlertController(title: "Nuevo Item", message: nil, preferredStyle: .Alert)
+        alertaNuevaLista.view.tintColor = Configuracion.verdeOscuro
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Cancel) { action -> Void in
+            
+        }
+        
+        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Default) { action -> Void in
+            
+            let textField:UITextField = alertaNuevaLista.textFields![0] as UITextField;
+            
+            if(textField.text?.characters.count > 0){
+                
+                self.realm.beginWriteTransaction()
+                
+                let nuevoItem:Item = Item()
+                nuevoItem.titulo = textField.text!
+                nuevoItem.category = "Default"
+                self.lista.items.addObject(nuevoItem)
+                
+                self.realm.commitWriteTransaction()
+                
+                self.listaTabla .reloadData()
+            }
+        }
+        
+        alertaNuevaLista.addAction(cancelAction)
+        alertaNuevaLista.addAction(addAction)
+        alertaNuevaLista.addTextFieldWithConfigurationHandler { textField -> Void in
+            
+            textField.textColor = Configuracion.verdeOscuro
+            textField.placeholder = "Nombre"
+        }
+        
+        self.presentViewController(alertaNuevaLista, animated: true, completion: nil)
+    }
+
+    
+    func marcarItem(marcar:Bool, posicion:Int){
+        
+        let item:Item!
+        
+        self.realm.beginWriteTransaction()
+        
+        if(marcar){
+            
+            item = lista.items.objectAtIndex(UInt(posicion)) as! Item
+            lista.checked_items.addObject(item)
+            lista.items.removeObjectAtIndex(UInt(posicion))
+            
+        }else{
+            
+            item = lista.checked_items.objectAtIndex(UInt(posicion)) as! Item
+            lista.items.addObject(item)
+            lista.checked_items.removeObjectAtIndex(UInt(posicion))
+        }
+        
+        self.realm.commitWriteTransaction()
+        
+        listaTabla.reloadData()
+        marcadosTabla.reloadData()
     }
 
 }
