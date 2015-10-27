@@ -7,21 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		884D68871BC664A80038FB13 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D68861BC664A80038FB13 /* Item.swift */; settings = {ASSET_TAGS = (); }; };
+		884D68891BC66AB20038FB13 /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D68881BC66AB20038FB13 /* Configuracion.swift */; settings = {ASSET_TAGS = (); }; };
+		884D688E1BC66CDE0038FB13 /* Extensiones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D688D1BC66CDE0038FB13 /* Extensiones.swift */; settings = {ASSET_TAGS = (); }; };
+		884D68901BC68A170038FB13 /* ListaHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D688F1BC68A170038FB13 /* ListaHomeTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		884D68921BC6BD310038FB13 /* ListaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D68911BC6BD310038FB13 /* ListaViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		884D68941BC7B5B00038FB13 /* ListaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D68931BC7B5B00038FB13 /* ListaTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		884D68971BC7BDDE0038FB13 /* MarcadosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D68961BC7BDDE0038FB13 /* MarcadosTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		88D31D3C1BC65E23000DA020 /* Lista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D31D3B1BC65E23000DA020 /* Lista.swift */; settings = {ASSET_TAGS = (); }; };
 		88D621331BC64F6F000FE93E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D621321BC64F6F000FE93E /* AppDelegate.swift */; };
-		88D621351BC64F6F000FE93E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D621341BC64F6F000FE93E /* ViewController.swift */; };
+		88D621351BC64F6F000FE93E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D621341BC64F6F000FE93E /* HomeViewController.swift */; };
 		88D621381BC64F6F000FE93E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D621361BC64F6F000FE93E /* Main.storyboard */; };
 		88D6213A1BC64F6F000FE93E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D621391BC64F6F000FE93E /* Assets.xcassets */; };
 		88D6213D1BC64F6F000FE93E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D6213B1BC64F6F000FE93E /* LaunchScreen.storyboard */; };
+		88D621491BC6518B000FE93E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D621471BC6518B000FE93E /* Realm.framework */; };
+		88D6214A1BC6518B000FE93E /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88D621471BC6518B000FE93E /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		88D6214B1BC6518B000FE93E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D621481BC6518B000FE93E /* RealmSwift.framework */; };
+		88D6214C1BC6518B000FE93E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88D621481BC6518B000FE93E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		88D6214D1BC6518B000FE93E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				88D6214C1BC6518B000FE93E /* RealmSwift.framework in Embed Frameworks */,
+				88D6214A1BC6518B000FE93E /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		884D68861BC664A80038FB13 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		884D68881BC66AB20038FB13 /* Configuracion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuracion.swift; sourceTree = "<group>"; };
+		884D688D1BC66CDE0038FB13 /* Extensiones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensiones.swift; sourceTree = "<group>"; };
+		884D688F1BC68A170038FB13 /* ListaHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaHomeTableViewCell.swift; sourceTree = "<group>"; };
+		884D68911BC6BD310038FB13 /* ListaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaViewController.swift; sourceTree = "<group>"; };
+		884D68931BC7B5B00038FB13 /* ListaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaTableViewCell.swift; sourceTree = "<group>"; };
+		884D68961BC7BDDE0038FB13 /* MarcadosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarcadosTableViewCell.swift; sourceTree = "<group>"; };
+		88D31D3B1BC65E23000DA020 /* Lista.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lista.swift; sourceTree = "<group>"; };
 		88D6212F1BC64F6F000FE93E /* Mis Listas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mis Listas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D621321BC64F6F000FE93E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		88D621341BC64F6F000FE93E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88D621341BC64F6F000FE93E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		88D621371BC64F6F000FE93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88D621391BC64F6F000FE93E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88D6213C1BC64F6F000FE93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88D6213E1BC64F6F000FE93E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88D621471BC6518B000FE93E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Realm.framework; sourceTree = "<group>"; };
+		88D621481BC6518B000FE93E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,12 +66,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D6214B1BC6518B000FE93E /* RealmSwift.framework in Frameworks */,
+				88D621491BC6518B000FE93E /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		884D68951BC7B5BE0038FB13 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				884D688F1BC68A170038FB13 /* ListaHomeTableViewCell.swift */,
+				884D68931BC7B5B00038FB13 /* ListaTableViewCell.swift */,
+				884D68961BC7BDDE0038FB13 /* MarcadosTableViewCell.swift */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
 		88D621261BC64F6F000FE93E = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +103,54 @@
 		88D621311BC64F6F000FE93E /* Mis Listas */ = {
 			isa = PBXGroup;
 			children = (
+				88D6214E1BC65227000FE93E /* frameworks */,
+				88D621461BC64FC9000FE93E /* utils */,
+				88D621451BC64FB4000FE93E /* controllers */,
+				88D621441BC64FA6000FE93E /* model */,
 				88D621321BC64F6F000FE93E /* AppDelegate.swift */,
-				88D621341BC64F6F000FE93E /* ViewController.swift */,
 				88D621361BC64F6F000FE93E /* Main.storyboard */,
 				88D621391BC64F6F000FE93E /* Assets.xcassets */,
 				88D6213B1BC64F6F000FE93E /* LaunchScreen.storyboard */,
 				88D6213E1BC64F6F000FE93E /* Info.plist */,
 			);
 			path = "Mis Listas";
+			sourceTree = "<group>";
+		};
+		88D621441BC64FA6000FE93E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				88D31D3B1BC65E23000DA020 /* Lista.swift */,
+				884D68861BC664A80038FB13 /* Item.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		88D621451BC64FB4000FE93E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				884D68951BC7B5BE0038FB13 /* TableViewCell */,
+				884D68911BC6BD310038FB13 /* ListaViewController.swift */,
+				88D621341BC64F6F000FE93E /* HomeViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		88D621461BC64FC9000FE93E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				884D68881BC66AB20038FB13 /* Configuracion.swift */,
+				884D688D1BC66CDE0038FB13 /* Extensiones.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		88D6214E1BC65227000FE93E /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88D621471BC6518B000FE93E /* Realm.framework */,
+				88D621481BC6518B000FE93E /* RealmSwift.framework */,
+			);
+			name = frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +163,8 @@
 				88D6212B1BC64F6F000FE93E /* Sources */,
 				88D6212C1BC64F6F000FE93E /* Frameworks */,
 				88D6212D1BC64F6F000FE93E /* Resources */,
+				88D6214D1BC6518B000FE93E /* Embed Frameworks */,
+				88D6214F1BC653FA000FE93E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,13 +220,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		88D6214F1BC653FA000FE93E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		88D6212B1BC64F6F000FE93E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88D621351BC64F6F000FE93E /* ViewController.swift in Sources */,
+				884D68921BC6BD310038FB13 /* ListaViewController.swift in Sources */,
+				884D68941BC7B5B00038FB13 /* ListaTableViewCell.swift in Sources */,
+				884D68871BC664A80038FB13 /* Item.swift in Sources */,
+				88D621351BC64F6F000FE93E /* HomeViewController.swift in Sources */,
 				88D621331BC64F6F000FE93E /* AppDelegate.swift in Sources */,
+				884D688E1BC66CDE0038FB13 /* Extensiones.swift in Sources */,
+				88D31D3C1BC65E23000DA020 /* Lista.swift in Sources */,
+				884D68901BC68A170038FB13 /* ListaHomeTableViewCell.swift in Sources */,
+				884D68891BC66AB20038FB13 /* Configuracion.swift in Sources */,
+				884D68971BC7BDDE0038FB13 /* MarcadosTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,8 +361,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mis Listas/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jl.Mis-Listas";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -257,8 +377,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mis Listas/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jl.Mis-Listas";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -283,6 +408,7 @@
 				88D621431BC64F6F000FE93E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
