@@ -29,7 +29,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         barraNavegacion.title = lista.nombre
         
         nuevoItemBoton.target = self;
-        nuevoItemBoton.action = "crearNuevoItem:";
+        nuevoItemBoton.action = "crearItem:";
         
         listaTabla.delegate = self;
         listaTabla.dataSource = self;
@@ -110,13 +110,20 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         marcarItem(marcar, posicion: indexPath.row)
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            borrarItem(tableView, indexPath: indexPath)
+        }
+    }
+    
     
     
     /*
     MARK: targets y eventos
     */
     
-    func crearNuevoItem(sender:UIButton!){ //Se crea una nueva lista
+    func crearItem(sender:UIButton!){ //Se crea una nueva lista
         
         let alertaNuevaLista: UIAlertController = UIAlertController(title: "Nuevo Item", message: nil, preferredStyle: .Alert)
         alertaNuevaLista.view.tintColor = Configuracion.verdeOscuro
@@ -179,6 +186,25 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         listaTabla.reloadData()
         marcadosTabla.reloadData()
+    }
+    
+    
+    func borrarItem(tabla:UITableView, indexPath:NSIndexPath){
+        
+        self.realm.beginWriteTransaction()
+        
+        if tabla == listaTabla {
+            
+            lista.items.removeObjectAtIndex(UInt(indexPath.row))
+            
+        }else if tabla == marcadosTabla {
+            
+            lista.checked_items.removeObjectAtIndex(UInt(indexPath.row))
+        }
+        
+        self.realm.commitWriteTransaction()
+        
+        tabla.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
 }
