@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ihy-P4-9YG"; */
+"Ihy-P4-9YG.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Ybq-JD-ptH"; */
+"Ybq-JD-ptH.text" = "Titulo";
+
+/* Class = "UINavigationItem"; title = "Detail list"; ObjectID = "buJ-VF-rJf"; */
+"buJ-VF-rJf.title" = "Detalle lista";
+
+/* Class = "UIViewController"; title = "Detalle lista"; ObjectID = "h2r-gx-DbZ"; */
+"h2r-gx-DbZ.title" = "Detalle lista";
+
+/* Class = "UINavigationItem"; title = "My lists"; ObjectID = "i5t-h2-qFO"; */
+"i5t-h2-qFO.title" = "Mis listas";
+
+/* Class = "UILabel"; text = "Label de la celda"; ObjectID = "lLw-eO-y4I"; */
+"lLw-eO-y4I.text" = "Label de la celda";
+
+/* Class = "UIBarButtonItem"; title = "Nuevo"; ObjectID = "zbW-Jy-X49"; */
+"zbW-Jy-X49.title" = "Nuevo";

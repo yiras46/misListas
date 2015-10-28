@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Mis Listas-->
+        <!--My lists-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Mis_Listas" sceneMemberID="viewController">
@@ -73,7 +73,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Mis Listas" id="i5t-h2-qFO"/>
+                    <navigationItem key="navigationItem" title="My lists" id="i5t-h2-qFO"/>
                     <connections>
                         <outlet property="addButton" destination="PJZ-9b-LO8" id="Nk5-e7-WLf"/>
                         <outlet property="listaTabla" destination="gtp-b7-Wpc" id="D8o-1c-nvc"/>
@@ -201,8 +201,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Detalle lista" id="buJ-VF-rJf">
-                        <barButtonItem key="rightBarButtonItem" title="Nuevo" id="zbW-Jy-X49">
+                    <navigationItem key="navigationItem" title="Detail list" id="buJ-VF-rJf">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="zbW-Jy-X49">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>

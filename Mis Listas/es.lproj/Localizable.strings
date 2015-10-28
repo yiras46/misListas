@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Mis Listas
+
+  Created by José Luis Fernández Mazaira on 28/10/15.
+  Copyright © 2015 JL Company. All rights reserved.
+*/
+
+
+Nuevo-elemento = "Nuevo elemento";
+Nueva-lista    = "Nueva lista";
+Aceptar        = "Aceptar";
+Cancelar       = "Cancelar";
+Nombre         = "Nombre";
