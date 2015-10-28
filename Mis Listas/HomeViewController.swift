@@ -13,16 +13,17 @@ import Realm
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     /*
-        MARK: IBOUTlets & IBActions
+        MARK: variables & IBOUTlets & IBActions
     */
     
     var listasUsuario:RLMResults!
+    var indiceSeleccionado=0
     let realm = RLMRealm.defaultRealm()
     
     @IBOutlet var addButton:UIButton!
     @IBOutlet var listaTabla:UITableView!
     
-    var indiceSeleccionado=0
+    
     
     /*
         MARK: UIViewControllerDelegate
@@ -31,7 +32,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addButton.addTarget(self, action: "crearNuevaLista:", forControlEvents: .TouchUpInside);
+        addButton.addTarget(self, action: "lanzarDialogoCrearNuevaLista:", forControlEvents: .TouchUpInside);
         
         cargarListas();
         
@@ -87,10 +88,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     /*
-        MARK: targets y eventos
+        MARK: funciones auxiliares
     */
     
-    func crearNuevaLista(sender:UIButton!){ //Se crea una nueva lista
+    
+    /** Se crea una nueva lista*/
+    
+    func lanzarDialogoCrearNuevaLista(sender:UIButton!){
 
         let titulo:NSAttributedString! = NSAttributedString(string: "Nueva lista", attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
@@ -105,14 +109,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if(textField.text?.characters.count > 0){
             
-                self.realm.beginWriteTransaction()
-                
-                let listaNueva:Lista = Lista()
-                listaNueva.nombre = textField.text!
-                listaNueva.usuario = Configuracion.UUID
-                Lista.createInDefaultRealmWithValue(listaNueva)
-                
-                self.realm.commitWriteTransaction()
+                Lista.crearGuardarLista(textField.text!)
                 
                 self.cargarListas()
             }
@@ -134,12 +131,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func cargarListas(){ //Se cargan las listas del usuario
+    /** Se cargan las listas del usuario */
+    
+    func cargarListas(){
         
         listasUsuario = Lista.objectsInRealm(realm, withPredicate: NSPredicate(format: "usuario = %@", Configuracion.UUID))
         listaTabla.reloadData()
     }
     
+    /*
+        MARK: Segues
+    */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

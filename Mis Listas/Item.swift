@@ -11,6 +11,10 @@ import Realm
 
 class Item: RLMObject {
 
+    /*
+        MARK: fields
+    */
+    
     dynamic var titulo:String = ""
     dynamic var category:String = ""
     dynamic var foto:NSData = NSData()

@@ -31,7 +31,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         barraNavegacion.title = lista.nombre
         
         nuevoItemBoton.target = self;
-        nuevoItemBoton.action = "crearItem:";
+        nuevoItemBoton.action = "lanzarDialogoCrearItem:";
         
         listaTabla.delegate = self;
         listaTabla.dataSource = self;
@@ -118,24 +118,36 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
             marcar = false;
         }
         
-        marcarItem(marcar, posicion: indexPath.row)
+        lista.marcarItem(marcar, posicion: indexPath.row)
+        listaTabla.reloadData()
+        marcadosTabla.reloadData()
     }
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
-            borrarItem(tableView, indexPath: indexPath)
+            
+            if(tableView == listaTabla){
+                lista.borrarItem(UInt(indexPath.row), isMarcado: false)
+            }else{
+                lista.borrarItem(UInt(indexPath.row), isMarcado: true)
+            }
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     
     
     
     /*
-    MARK: targets y eventos
+        MARK: funciones auxiliares
     */
     
-    func crearItem(sender:UIButton!){ //Se crea una nueva lista
+    
+    /** Lanza un diálogo para crear un nuevo item en la lista */
+    
+    func lanzarDialogoCrearItem(sender:UIButton!){
         
         let titulo:NSAttributedString! = NSAttributedString(string: "Nuevo elemento", attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
@@ -154,14 +166,11 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if(textField.text?.characters.count > 0){
                 
-                self.realm.beginWriteTransaction()
-                
                 let nuevoItem:Item = Item()
                 nuevoItem.titulo = textField.text!
                 nuevoItem.category = "Default"
-                self.lista.items.addObject(nuevoItem)
                 
-                self.realm.commitWriteTransaction()
+                self.lista.agregarItem(nuevoItem, isMarcado: false, transaccionActivada:true)
                 
                 self.listaTabla .reloadData()
             }
@@ -178,49 +187,5 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.presentViewController(alertaNuevoItem, animated: true, completion: nil)
     }
 
-    
-    func marcarItem(marcar:Bool, posicion:Int){
-        
-        let item:Item!
-        
-        self.realm.beginWriteTransaction()
-        
-        if(marcar){
-            
-            item = lista.items.objectAtIndex(UInt(posicion)) as! Item
-            lista.checked_items.addObject(item)
-            lista.items.removeObjectAtIndex(UInt(posicion))
-            
-        }else{
-            
-            item = lista.checked_items.objectAtIndex(UInt(posicion)) as! Item
-            lista.items.addObject(item)
-            lista.checked_items.removeObjectAtIndex(UInt(posicion))
-        }
-        
-        self.realm.commitWriteTransaction()
-        
-        listaTabla.reloadData()
-        marcadosTabla.reloadData()
-    }
-    
-    
-    func borrarItem(tabla:UITableView, indexPath:NSIndexPath){
-        
-        self.realm.beginWriteTransaction()
-        
-        if tabla == listaTabla {
-            
-            lista.items.removeObjectAtIndex(UInt(indexPath.row))
-            
-        }else if tabla == marcadosTabla {
-            
-            lista.checked_items.removeObjectAtIndex(UInt(indexPath.row))
-        }
-        
-        self.realm.commitWriteTransaction()
-        
-        tabla.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-    }
 
 }

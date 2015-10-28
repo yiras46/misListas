@@ -8,7 +8,9 @@
 
 import UIKit
 
-//MARK: UIColor
+/*
+    MARK: UIColor
+*/
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -28,6 +30,9 @@ extension UIColor {
     }
 }
 
+/*
+    MARK: String
+*/
 
 extension String{
     
@@ -40,3 +45,5 @@ extension String{
         return strokeString
     }
 }
+
+
