@@ -156,18 +156,18 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func lanzarDialogoCrearItem(sender:UIButton!){
         
-        let titulo:NSAttributedString! = NSAttributedString(string: "Nuevo elemento", attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
+        let titulo:NSAttributedString! = NSAttributedString(string: Configuracion.nuevo_elemento, attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
     
         let alertaNuevoItem: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         alertaNuevoItem.view.tintColor = UIColor.verdeOscuro()
         alertaNuevoItem.setValue(titulo, forKey: "attributedTitle")
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Default) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: Configuracion.cancelar, style: .Default) { action -> Void in
             
         }
         
-        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Cancel) { action -> Void in
+        let addAction: UIAlertAction = UIAlertAction(title: Configuracion.aceptar, style: .Cancel) { action -> Void in
             
             let textField:UITextField = alertaNuevoItem.textFields![0] as UITextField;
             
@@ -188,7 +188,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         alertaNuevoItem.addTextFieldWithConfigurationHandler { textField -> Void in
             
             textField.textColor = UIColor.verdeOscuro()
-            textField.placeholder = "Nombre"
+            textField.placeholder = Configuracion.nombre
         }
         
         self.presentViewController(alertaNuevoItem, animated: true, completion: nil)

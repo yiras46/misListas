@@ -117,14 +117,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func lanzarDialogoCrearNuevaLista(sender:UIButton!){
 
-        let titulo:NSAttributedString! = NSAttributedString(string: "Nueva lista", attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
+        let titulo:NSAttributedString! = NSAttributedString(string: Configuracion.nueva_lista, attributes: [NSForegroundColorAttributeName : UIColor.verdeOscuro(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
         
         let alertaNuevaLista: UIAlertController = UIAlertController(title:nil, message: nil, preferredStyle: .Alert)
         alertaNuevaLista.view.tintColor = UIColor.verdeOscuro()
         alertaNuevaLista.setValue(titulo, forKey: "attributedTitle")
         
-        let addAction: UIAlertAction = UIAlertAction(title: "Aceptar", style: .Cancel) { action -> Void in
+        let addAction: UIAlertAction = UIAlertAction(title: Configuracion.aceptar, style: .Cancel) { action -> Void in
             
             let textField:UITextField = alertaNuevaLista.textFields![0] as UITextField;
             
@@ -136,7 +136,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Default) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: Configuracion.cancelar, style: .Default) { action -> Void in
             
         }
         
@@ -145,7 +145,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         alertaNuevaLista.addTextFieldWithConfigurationHandler { textField -> Void in
             
             textField.textColor = UIColor.verdeOscuro()
-            textField.placeholder = "Nombre"
+            textField.placeholder = Configuracion.nombre
         }
         
         self.presentViewController(alertaNuevaLista, animated: true, completion: nil)
