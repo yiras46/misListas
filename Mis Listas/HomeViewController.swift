@@ -16,9 +16,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         MARK: variables & IBOUTlets & IBActions
     */
     
-    var listasUsuario:RLMResults!
+    var listasUsuario:RLMArray!
     var indiceSeleccionado=0
-    let realm = RLMRealm.defaultRealm()
+    //let realm = RLMRealm.defaultRealm()
     
     @IBOutlet var addButton:UIButton!
     @IBOutlet var listaTabla:UITableView!
@@ -34,16 +34,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         addButton.addTarget(self, action: "lanzarDialogoCrearNuevaLista:", forControlEvents: .TouchUpInside);
         
-        cargarListas();
+        listasUsuario = Lista.cargaListas()
         
         listaTabla.delegate = self;
         listaTabla.dataSource = self;
     }
 
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     
     
@@ -56,10 +58,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return Int(listasUsuario.count)
     }
+    
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -72,6 +76,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         
         indiceSeleccionado = indexPath.row
@@ -79,13 +84,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let celdaSeleccionada = tableView .cellForRowAtIndexPath(indexPath) as! ListaHomeTableViewCell
         celdaSeleccionada.setSelected(false, animated: true)
     }
-    
 
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            tableView.beginUpdates()
+            
+            listasUsuario.borrarObjeto(UInt(indexPath.row))
+            listasUsuario = Lista.cargaListas()
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.endUpdates()
+        }
+    }
+
+    
     
     /*
         MARK: funciones auxiliares
@@ -109,9 +130,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if(textField.text?.characters.count > 0){
             
-                Lista.crearGuardarLista(textField.text!)
-                
-                self.cargarListas()
+                Lista.crearLista(textField.text!)
+                self.listasUsuario = Lista.cargaListas()
+                self.listaTabla.reloadData()
             }
         }
         
@@ -131,13 +152,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    /** Se cargan las listas del usuario */
-    
-    func cargarListas(){
-        
-        listasUsuario = Lista.objectsInRealm(realm, withPredicate: NSPredicate(format: "usuario = %@", Configuracion.UUID))
-        listaTabla.reloadData()
-    }
     
     /*
         MARK: Segues

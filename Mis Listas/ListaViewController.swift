@@ -41,9 +41,11 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -62,6 +64,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(tableView == marcadosTabla){
@@ -77,6 +80,7 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return 0
         }
     }
+    
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -99,10 +103,12 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         
         return indexPath
     }
+    
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -124,9 +130,10 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            
             
             if(tableView == listaTabla){
                 lista.borrarItem(UInt(indexPath.row), isMarcado: false)
@@ -186,6 +193,5 @@ class ListaViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.presentViewController(alertaNuevoItem, animated: true, completion: nil)
     }
-
 
 }

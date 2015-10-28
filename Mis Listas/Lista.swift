@@ -23,9 +23,18 @@ class Lista: RLMObject {
     
     //MARK: funciones para manejo de la lista de items
     
+    /** Devuelve todas las listas del usuario */
+    
+    static func cargaListas()->RLMArray{
+        
+        return Lista.objectsInRealm(RLMRealm.defaultRealm(), withPredicate: NSPredicate(format: "usuario = %@", Configuracion.UUID)).toArray()
+    }
+    
+    
+    
     /** Crea una lista y la guarda*/
     
-    static func crearGuardarLista(nombre:String)->Lista{
+    static func crearLista(nombre:String){
         RLMRealm.defaultRealm().beginWriteTransaction()
         
         let listaNueva:Lista = Lista()
@@ -34,8 +43,8 @@ class Lista: RLMObject {
         Lista.createInDefaultRealmWithValue(listaNueva)
         
         RLMRealm.defaultRealm().commitWriteTransaction()
-        return listaNueva
     }
+    
     
     
     /** Agrega un item en la posición correcta de forma que las listas se encuentre ordenado */
@@ -82,6 +91,7 @@ class Lista: RLMObject {
     }
     
     
+    
     /** Borra un item de alguna de las dos listas (marcados y no marcados) */
     
     func borrarItem(posicion:UInt, isMarcado:Bool){
@@ -99,6 +109,7 @@ class Lista: RLMObject {
         
         RLMRealm.defaultRealm().commitWriteTransaction()
     }
+    
     
     
     /** Marca o desmarca un determinado Item de la lista */

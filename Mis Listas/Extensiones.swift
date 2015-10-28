@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Realm
 
 /*
     MARK: UIColor
@@ -46,4 +47,29 @@ extension String{
     }
 }
 
+/*
+    MARK: Realm
+*/
+
+extension RLMResults{
+    
+    func toArray()->RLMArray{
+        
+        let array:RLMArray = RLMArray(objectClassName: self.objectClassName)
+        array .addObjects(self)
+        return array;
+    }
+}
+
+extension RLMArray{
+    
+    func borrarObjeto(posicion:UInt){
+        
+        let realm = RLMRealm.defaultRealm()
+        
+        realm.beginWriteTransaction()
+        realm.deleteObject(self.objectAtIndex(posicion))
+        realm.commitWriteTransaction()
+    }
+}
 
